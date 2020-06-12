@@ -275,4 +275,23 @@ const duplicates = (array) => {
   return count;
 };
 
-console.log(duplicates(myArr));
+//console.log(duplicates(myArr));
+
+//https://www.codewars.com/kata/5b73fe9fb3d9776fbf00009e
+//1. .sort to put in descending order
+//2. for loop through array. Start at index 0, subtract i + 1 from i at each iteration to get differences
+//3. add the difference to result variable
+//sumOfDifferences([2, 1, 10]) Returns 9
+numArr = [2, 1, 10];
+
+function sumOfDifferences(arr) {
+  let result = 0;
+  arr.sort((a, b) => b - a);
+  for (i = 0; i < arr.length - 1; i++) {
+    console.log(arr[i] - arr[i + 1]);
+    result += arr[i] - arr[i + 1];
+  }
+  return result;
+}
+
+console.log(sumOfDifferences(numArr));
