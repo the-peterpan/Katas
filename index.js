@@ -318,7 +318,52 @@ function maskify(num) {
   let numArr = [...num];
   let hashed = numArr.splice(0, numArr.length - 4);
   hashes = hashed.map((number, index) => "#").join("");
-  return `${hashes}${numArr.join("")}`;
+  //return `${hashes}${numArr.join("")}`;
+  return hashes + numArr.join("");
 }
 
-console.log(maskify(creditCardNo));
+//console.log(maskify(creditCardNo));
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Distinct Digit Year
+//https://www.codewars.com/kata/58aa68605aab54a26c0001a6/train/javascript
+
+// function distinctDigitYear(year) {
+//   for (let i = year + 1; i < 9000; i++) {
+//     if (numberIsDistinct(i)) return i;
+//   }
+// }
+
+// function numberIsDistinct(num) {
+//   num = num.toString();
+//   console.log(num);
+//   for (let i = 0; i < num.length; i++) {
+//     console.log(num[i], i + 1);
+//     if (num.indexOf(num[i], i + 1) !== -1) {
+//       return false;
+//       //i.e. search value of num[i], starting search AFTER this first occurence.
+//       //returns -1 if the value never occurs and is therefore UNIQUE
+//     }
+//   }
+//   return true;
+// }
+
+function distinctDigitYear(year) {
+  let ySt = new Set();
+  let i = 1;
+  while (ySt.size != 4) {
+    ySt = new Set((year + i).toString());
+    console.log(ySt);
+    i++;
+  }
+
+  let result = "";
+  for (let item of ySt) {
+    result += `${item}`;
+    //console.log(item, typeof item);
+  }
+
+  return Number(result);
+}
+
+console.log(distinctDigitYear(1987));
