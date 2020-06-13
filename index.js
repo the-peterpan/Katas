@@ -277,6 +277,7 @@ const duplicates = (array) => {
 
 //console.log(duplicates(myArr));
 
+//SUM OF DIFFERENCES
 //https://www.codewars.com/kata/5b73fe9fb3d9776fbf00009e
 //1. .sort to put in descending order
 //2. for loop through array. Start at index 0, subtract i + 1 from i at each iteration to get differences
@@ -294,4 +295,30 @@ function sumOfDifferences(arr) {
   return result;
 }
 
-console.log(sumOfDifferences(numArr));
+//console.log(sumOfDifferences(numArr)),
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//CREDIT CARD MASK
+//https://www.codewars.com/kata/5412509bd436bd33920011bc
+//maskify("4556364607935616") == "############5616"
+//1. turn string into array
+//2. loop that ends at arr.length-4 and replaces each element with #
+let creditCardNo = "4556364607935616";
+
+// function maskify(num) {
+//   let arrOfNums = [...num];
+//   for (i = 0; i < arrOfNums.length - 4; i++) {
+//     arrOfNums[i] = "#";
+//   }
+//   return arrOfNums.join("");
+// }
+
+function maskify(num) {
+  let numArr = [...num];
+  let hashed = numArr.splice(0, numArr.length - 4);
+  hashes = hashed.map((number, index) => "#").join("");
+  return `${hashes}${numArr.join("")}`;
+}
+
+console.log(maskify(creditCardNo));
