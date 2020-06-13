@@ -208,49 +208,44 @@ function queueTime(arr, numTills) {
 
 //**********************POST BOOTCAMP KATAS ***************************
 
+//HOW MANY PAIRS OF DUPLICATES?
 // https://www.codewars.com/kata/5c55ad8c9d76d41a62b4ede3
+//E.G. myArr = [1000, 1000]; //Answer: 1
+//E.G. myArr = [1, 2, 5, 6, 5, 2]; //Answer: 2
+myArr = [1, 2, 2, 20, 6, 20, 2, 6, 2]; //Answer: 4
 
-//myArr = [1000, 1000]; // 1
-//myArr = [1, 2, 5, 6, 5, 2]; //2
-myArr = [1, 2, 2, 20, 6, 20, 2, 6, 2]; //4
+function duplicates(arr) {
+  counter = 0;
+  if (arr.length === 0 || arr.length === 1) {
+    return 0;
+  } else {
+    for (i = 0; i < arr.length; i++) {
+      for (j = i + 1; j < arr.length; j++) {
+        if (arr[i] === arr[j]) {
+          arr.splice(j, 1);
+          counter += 1;
+          break;
+        }
+      }
+    }
 
-//USING NESTED FOR LOOPS
+    return counter;
+  }
+}
 
-// function duplicates(arr) {
-//   counter = 0;
-//   if (arr.length === 0 || arr.length === 1) {
-//     return 0;
-//   } else {
-//     for (i = 0; i < arr.length; i++) {
-//       for (j = i + 1; j < arr.length; j++) {
-//         if (arr[i] === arr[j]) {
-//           arr.splice(j, 1);
-//           counter += 1;
-//           break;
-//         }
-//       }
-//     }
+function duplicates2(arr) {
+  counter = 0;
+  arr.sort((a, b) => a - b);
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i + 1]) {
+      counter += 1;
+      i++;
+    }
+  }
+  return counter;
+}
 
-//     return counter;
-//   }
-// }
-
-//USING SORT & SINGLE FOR LOOP
-
-// function duplicates(arr) {
-//   counter = 0;
-//   arr.sort((a, b) => a - b);
-//   for (i = 0; i < arr.length; i++) {
-//     if (arr[i] === arr[i + 1]) {
-//       counter += 1;
-//       i++;
-//     }
-//   }
-//   return counter;
-// }
-
-//USING FOREACH AND NEW ARRAY
-const duplicates = (array) => {
+const duplicates3 = (array) => {
   console.log(array);
   let double = [];
   let count = 0;
@@ -297,8 +292,6 @@ function sumOfDifferences(arr) {
 
 //console.log(sumOfDifferences(numArr)),
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 //CREDIT CARD MASK
 //https://www.codewars.com/kata/5412509bd436bd33920011bc
 //maskify("4556364607935616") == "############5616"
@@ -306,15 +299,15 @@ function sumOfDifferences(arr) {
 //2. loop that ends at arr.length-4 and replaces each element with #
 let creditCardNo = "4556364607935616";
 
-// function maskify(num) {
-//   let arrOfNums = [...num];
-//   for (i = 0; i < arrOfNums.length - 4; i++) {
-//     arrOfNums[i] = "#";
-//   }
-//   return arrOfNums.join("");
-// }
-
 function maskify(num) {
+  let arrOfNums = [...num];
+  for (i = 0; i < arrOfNums.length - 4; i++) {
+    arrOfNums[i] = "#";
+  }
+  return arrOfNums.join("");
+}
+
+function maskify2(num) {
   let numArr = [...num];
   let hashed = numArr.splice(0, numArr.length - 4);
   hashes = hashed.map((number, index) => "#").join("");
@@ -324,31 +317,30 @@ function maskify(num) {
 
 //console.log(maskify(creditCardNo));
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Distinct Digit Year
+//DISTINCT DIGIT YEAR
 //https://www.codewars.com/kata/58aa68605aab54a26c0001a6/train/javascript
 
-// function distinctDigitYear(year) {
-//   for (let i = year + 1; i < 9000; i++) {
-//     if (numberIsDistinct(i)) return i;
-//   }
-// }
-
-// function numberIsDistinct(num) {
-//   num = num.toString();
-//   console.log(num);
-//   for (let i = 0; i < num.length; i++) {
-//     console.log(num[i], i + 1);
-//     if (num.indexOf(num[i], i + 1) !== -1) {
-//       return false;
-//       //i.e. search value of num[i], starting search AFTER this first occurence.
-//       //returns -1 if the value never occurs and is therefore UNIQUE
-//     }
-//   }
-//   return true;
-// }
-
 function distinctDigitYear(year) {
+  for (let i = year + 1; i < 9000; i++) {
+    if (numberIsDistinct(i)) return i;
+  }
+}
+
+function numberIsDistinct(num) {
+  num = num.toString();
+  console.log(num);
+  for (let i = 0; i < num.length; i++) {
+    console.log(num[i], i + 1);
+    if (num.indexOf(num[i], i + 1) !== -1) {
+      return false;
+      //i.e. search value of num[i], starting search AFTER this first occurence.
+      //returns -1 if the value never occurs and is therefore UNIQUE
+    }
+  }
+  return true;
+}
+
+function distinctDigitYear2(year) {
   let ySt = new Set();
   let i = 1;
   while (ySt.size != 4) {
@@ -360,10 +352,9 @@ function distinctDigitYear(year) {
   let result = "";
   for (let item of ySt) {
     result += `${item}`;
-    //console.log(item, typeof item);
   }
 
   return Number(result);
 }
 
-console.log(distinctDigitYear(1987));
+//console.log(distinctDigitYear(1987));
