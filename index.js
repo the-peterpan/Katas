@@ -358,3 +358,60 @@ function distinctDigitYear2(year) {
 }
 
 //console.log(distinctDigitYear(1987));
+
+//DIVIDE AND CONQUER
+//https://www.codewars.com/kata/57eaec5608fed543d6000021
+/*Given a mixed array of number and string representations of integers, 
+add up the string integers and subtract this from the total of the non-string integers.
+Return as a number.
+*/
+
+let divideArr = [9, 3, "7", "3"]; // Answer: 2
+
+function divCon(x) {
+  let sumNumbers = 0;
+  let sumStrings = 0;
+  for (i = 0; i < x.length; i++) {
+    if (typeof x[i] === "number") {
+      sumNumbers += x[i];
+    } else if (typeof x[i] === "string") {
+      sumStrings += Number(x[i]);
+    }
+  }
+  return sumNumbers - sumStrings;
+}
+
+function divCon2(x) {
+  let sumNumbers = 0;
+  let sumStrings = 0;
+  x.forEach((el) => {
+    if (typeof el === "number") {
+      sumNumbers += el;
+    }
+    if (typeof el === "string") {
+      sumStrings += Number(el);
+    }
+  });
+  return sumNumbers - sumStrings;
+}
+
+function divCon3(x) {
+  const nums = x.filter((num) => typeof num === "number");
+  const strings = x.filter((str) => typeof str === "string");
+  const sumstr = strings.reduce(
+    (acc, currentVal) => (acc += parseInt(currentVal)),
+    0
+  );
+
+  const sumnum = nums.reduce((acc, currentVal) => (acc += currentVal), 0);
+  return sumnum - sumstr;
+}
+
+function divCon4(x) {
+  return x.reduce(
+    (acc, val) => (typeof val === "number" ? acc + val : acc - parseInt(val)),
+    0
+  );
+}
+
+console.log(divCon4(divideArr));
