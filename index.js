@@ -233,6 +233,29 @@ function duplicates(arr) {
   }
 }
 
+// SLIGHTLY DIFFERENT APPROACH TO ABOVE
+
+function duplicates(arr) {
+  let counter = 0;
+  let filteredArr = [];
+
+  if (arr.length === 0 || arr.length === 1) {
+    return 0;
+  } else {
+    for (i = 0; i < arr.length; i++) {
+      for (j = i + 1; j < arr.length; j++) {
+        if (arr[i] === arr[j]) {
+          arr.splice(j, 1); //splice j first because if remove i index first, the position of j changes
+          arr.splice(i, 1);
+          i--; // to reset i loop now after removing i. Otherwise the index increments and the next value after this i is skipped
+          counter += 1;
+        }
+      }
+    }
+  }
+  return counter;
+}
+
 function duplicates2(arr) {
   counter = 0;
   arr.sort((a, b) => a - b);
@@ -414,4 +437,36 @@ function divCon4(x) {
   );
 }
 
-console.log(divCon4(divideArr));
+//console.log(divCon4(divideArr));
+
+//FREQUENCY SEQUENCE
+/*
+https://www.codewars.com/kata/frequency-sequence
+Return an output string that translates an input string s/$s by replacing each character in s/$s
+with a number representing the number of times that character occurs in s/$s and separating each number
+with the character(s) sep/$sep.
+*/
+//To get the number of occurrences of certain character:
+// const character = "w";
+// console.log("hello world".split(character).length - 1);
+
+let string1 = "^^^**$";
+let string2 = "x";
+
+function freqSeq(string1, string2) {
+  let result = [];
+  //use .call() method on .map() to convert string to an array
+  //.call() enables us to copy the context of one object to another, e.g. of .map() for an array over to a string
+  const map = Array.prototype.map;
+  const newArr = map.call(string1, (eachLetter) => {
+    let countLetter = string1.split(eachLetter).length - 1;
+    result += `${countLetter}${string2}`;
+  });
+
+  return result.slice(0, result.length - 1);
+}
+
+const freqSeq2 = (str, sep) =>
+  [...str].map((char) => str.split(char).length - 1).join(sep);
+
+//console.log(freqSeq2(string1, string2));
