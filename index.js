@@ -478,7 +478,9 @@ function filter_list(list) {
 let arrayToFilter = [1, 2, "a", "b"];
 
 function filter_list2(list) {
-  return list.filter((el) => typeof el === "number");
+  return list.filter((el) => typeof el !== "string");
 }
 
-console.log(filter_list2(arrayToFilter));
+const filter_list3 = (list) => list.filter((el) => typeof el === "number");
+
+//console.log(filter_list3(arrayToFilter));
