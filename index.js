@@ -1,20 +1,3 @@
-//WEEK 4 DAY 4
-
-//Task 1:
-//www.codewars.com/kata/53dbd5315a3c69eed20002dd/train/javascript
-//In this kata you will create a function that takes a list of non-negative
-//integers and strings and returns a new list with the strings filtered out.
-let list = [1, 2, "a", "b"];
-function filter_list(l) {
-  let numbers = [];
-  l.forEach(function (item) {
-    if (typeof item == "number") {
-      numbers.push(item);
-    }
-  });
-  return numbers;
-}
-
 //Task 2:
 //www.codewars.com/kata/5c55ad8c9d76d41a62b4ede3/train/python
 //You are given array of integers, your task will be to count all pairs in that array and return their count.
@@ -470,3 +453,32 @@ const freqSeq2 = (str, sep) =>
   [...str].map((char) => str.split(char).length - 1).join(sep);
 
 //console.log(freqSeq2(string1, string2));
+
+//LIST FILTERING
+/*
+https://www.codewars.com/kata/list-filtering
+In this kata you will create a function that takes a list of non-negative integers and
+strings and returns a new list with the strings filtered out.
+Example 
+filter_list([1,2,'a','b']) == [1,2]
+filter_list([1,'a','b',0,15]) == [1,0,15]
+filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
+*/
+
+function filter_list(list) {
+  let numbers = [];
+  list.forEach(function (item) {
+    if (typeof item == "number") {
+      numbers.push(item);
+    }
+  });
+  return numbers;
+}
+
+let arrayToFilter = [1, 2, "a", "b"];
+
+function filter_list2(list) {
+  return list.filter((el) => typeof el === "number");
+}
+
+console.log(filter_list2(arrayToFilter));
