@@ -484,3 +484,53 @@ function filter_list2(list) {
 const filter_list3 = (list) => list.filter((el) => typeof el === "number");
 
 //console.log(filter_list3(arrayToFilter));
+
+//MOST SALES
+//https://www.codewars.com/kata/5e16ffb7297fe00001114824
+//You work in the best consumer electronics corporation, and your boss wants to find out which three products generate the most revenue. Given 3 lists of the same length like these:
+
+const products = ["Computer", "Cell Phones", "Vacuum Cleaner"];
+const amounts = [3, 24, 8];
+const prices = [199, 299, 399];
+
+/*
+return the three product names with the highest revenue (amount * price).
+Note: if multiple products have the same revenue, order them according to their original positions in the input list.
+*/
+function top3(products, amounts, prices) {
+  const rev = [];
+  const result = [];
+  for (i = 0; i < 3; i++) {
+    rev.push(amounts[i] * prices[i]);
+    console.log(rev);
+  }
+
+  for (i = 0; i < 3; i++) {
+    result.push(products[rev.indexOf(Math.max(...rev))]);
+    rev[rev.indexOf(Math.max(...rev))] = -1;
+    console.log(rev);
+  }
+
+  return result;
+}
+
+//REFACTORING
+function top3refactored(products, amounts, prices) {
+  const rev = products.map(function (val, i, arr) {
+    console.log(val, i, arr);
+    return {
+      revenue: prices[i] * amounts[i],
+      name: arr[i],
+      index: i,
+    };
+  });
+  const sorted = rev.sort(function (a, b) {
+    // if b.revenue - a.revenue is 0 -> falsy then we sort by the index ascending
+    return b.revenue - a.revenue || a.index - b.index;
+  });
+  return sorted.slice(0, 3).map(function (item) {
+    return item.name;
+  });
+}
+
+console.log(top3(products, amounts, prices));
