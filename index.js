@@ -502,13 +502,11 @@ function top3(products, amounts, prices) {
   const result = [];
   for (i = 0; i < 3; i++) {
     rev.push(amounts[i] * prices[i]);
-    console.log(rev);
   }
 
   for (i = 0; i < 3; i++) {
     result.push(products[rev.indexOf(Math.max(...rev))]);
     rev[rev.indexOf(Math.max(...rev))] = -1;
-    console.log(rev);
   }
 
   return result;
@@ -533,4 +531,42 @@ function top3refactored(products, amounts, prices) {
   });
 }
 
-console.log(top3(products, amounts, prices));
+//console.log(top3(products, amounts, prices));
+
+//MUMBLING
+//https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
+/*
+This time no story, no theory. The examples below show you how to write function accum:
+Examples:
+accum("abcd") -> "A-Bb-Ccc-Dddd"
+accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+accum("cwAt") -> "C-Ww-Aaa-Tttt"
+*/
+let accumString = "RqaEzty";
+function accum(string) {
+  let splitString = [...string];
+  for (i = 0; i < splitString.length; i++) {
+    splitString[i] =
+      splitString[i].toUpperCase() + splitString[i].toLowerCase().repeat(i);
+    console.log(splitString[i]);
+  }
+  return splitString.join("-");
+}
+
+//Refactored
+
+const accum2 = (string) =>
+  string
+    .toLowerCase()
+    .split("")
+    .map((char, i) => char.toUpperCase() + char.repeat().join("-"));
+
+//console.log(accum(accumString));
+
+//ORDERED COUNT OF CHARACTERS
+//https://www.codewars.com/kata/57a6633153ba33189e000074
+/*
+Count the number of occurrences of each character and return it as a list of tuples in order of appearance.
+Example:
+orderedCount("abracadabra") == [['a', 5], ['b', 2], ['r', 2], ['c', 1], ['d', 1]]
+*/
