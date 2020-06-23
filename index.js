@@ -570,3 +570,38 @@ Count the number of occurrences of each character and return it as a list of tup
 Example:
 orderedCount("abracadabra") == [['a', 5], ['b', 2], ['r', 2], ['c', 1], ['d', 1]]
 */
+
+function orderedCount(str) {
+  const noDupesArr = [];
+  let result = [];
+  for (i = 0; i < str.length; i++) {
+    if (!noDupesArr.includes(str[i])) {
+      noDupesArr.push(str[i]);
+    }
+  }
+  noDupesArr.forEach((el) => {
+    const occurences = str.split(el).length - 1;
+    result.push([el, occurences]);
+  });
+  return result;
+}
+
+const orderedCount2 = (str) => {
+  const strArr = str.split("");
+  const arrayWithoutDupes = strArr.filter((item, pos) => {
+    return strArr.indexOf(item) === pos;
+  });
+  let result = [];
+  arrayWithoutDupes.forEach((el) => {
+    const occurences = str.split(el).length - 1;
+    result.push([el, occurences]);
+  });
+  return result;
+};
+
+const orderedCount3 = (str) => {
+  const strSet = new Set(str);
+  return [...strSet].map((el) => [el, str.split(el).length - 1]);
+};
+
+console.log(orderedCount3("abracadabra"));
