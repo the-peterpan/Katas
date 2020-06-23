@@ -1,26 +1,3 @@
-//Task 2:
-//www.codewars.com/kata/5c55ad8c9d76d41a62b4ede3/train/python
-//You are given array of integers, your task will be to count all pairs in that array and return their count.
-
-// const duplicates = (arr) => {
-//   let double = [];
-//   let count = 0;
-//   arr.forEach((el) => {
-//     if (double[el] !== el) {
-//       double[el] = el;
-//       console.log(double);
-//     } else {
-//       double[el] = undefined;
-//       count++;
-//     }
-//   });
-//   return count;
-// };
-
-// duplicates(arr);
-
-//#Make the magic happen
-
 //WEEK 5 DAY 1
 //https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/javascript
 
@@ -188,6 +165,26 @@ function queueTime(arr, numTills) {
 }
 
 // console.log(queueTime([10, 2, 3, 3], 2));
+
+// first solution:
+function removeEveryOther(arr) {
+  let newArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 0 !== 2) {
+      newArray.push(arr[i]);
+    }
+  }
+  return newArray;
+}
+
+// second solution:
+function removeEveryOther(arr) {
+  let newArray = [];
+  for (let i = 0; i < arr.length; i += 2) {
+    newArray.push(arr[i]);
+  }
+  return newArray;
+}
 
 //**********************POST BOOTCAMP KATAS ***************************
 
