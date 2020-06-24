@@ -683,4 +683,4 @@ function infected3(s) {
   }
 }
 
-console.log(infected3("01000000X000X011X0X")); //Answer: 73.33333333333333
+//console.log(infected3("01000000X000X011X0X")); //Answer: 73.33333333333333
