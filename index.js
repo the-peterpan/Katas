@@ -601,4 +601,86 @@ const orderedCount3 = (str) => {
   return [...strSet].map((el) => [el, str.split(el).length - 1]);
 };
 
-console.log(orderedCount3("abracadabra"));
+//console.log(orderedCount3("abracadabra"));
+
+//PANDEMIA
+
+/*
+https://www.codewars.com/kata/5e2596a9ad937f002e510435/train/javascript
+⚠️ The world is in quarantine! There is a new pandemic that struggles mankind. Each continent is isolated from each other but infected people have spread before the warning. ⚠️
+🗺️ You would be given a map of the world in a type of string:
+string s = "01000000X000X011X0X"
+'0' : uninfected
+'1' : infected
+'X' : ocean
+⚫ The virus can't spread to the other side of the ocean.
+⚫ If one person is infected every person in this continent gets infected too.
+⚫ Your task is to find the percentage of human population that got infected in the end.
+❗❗ The first and the last continent are not connected!
+💡 Example:
+ start: map1 = "01000000X000X011X0X"
+ end:   map1 = "11111111X000X111X0X"
+ total = 15
+ infected = 11
+ percentage = 100*11/15 = 73.33333333333333
+➕ For maps without oceans "X" the whole world is connected.
+➕ For maps without "0" and "1" return 0 as there is no population.
+*/
+
+function infected(s) {
+  let infected = 0;
+  let uninfected = 0;
+
+  continentsArr = s.split("X");
+
+  console.log(continentsArr);
+
+  for (i = 0; i < continentsArr.length; i++) {
+    if (continentsArr[i].includes("1")) {
+      infected += continentsArr[i].length;
+    } else {
+      uninfected += continentsArr[i].length;
+    }
+    console.log(continentsArr[i], "infected", infected);
+    console.log(continentsArr[i], "uninfected", uninfected);
+  }
+  const percentage = 100 * (infected / (uninfected + infected));
+  return percentage || 0;
+}
+
+function infected2(s) {
+  let newS = [];
+  newS = s.split("X");
+  let totalInfected = 0;
+  let totalPeople = 0;
+  for (let i = 0; i < newS.length; i++) {
+    totalPeople += newS[i].length;
+    if (newS[i].includes("1")) {
+      totalInfected += newS[i].length;
+    }
+  }
+  if (totalPeople === 0) {
+    return 0;
+  } else {
+    return (totalInfected / totalPeople) * 100;
+  }
+}
+
+function infected3(s) {
+  const continents = s.split("X");
+  let total = 0;
+  let infected = 0;
+  for (let continent of continents) {
+    total += continent.length;
+    if (continent.includes("1")) {
+      infected += continent.length;
+    }
+  }
+  if (total === 0) {
+    return 0;
+  } else {
+    return (infected / total) * 100;
+  }
+}
+
+console.log(infected3("01000000X000X011X0X")); //Answer: 73.33333333333333
