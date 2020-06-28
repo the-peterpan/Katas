@@ -902,4 +902,46 @@ function boredom4(staff) {
   else if (boredemLevel > 80 && boredemLevel < 100) return "i can handle this";
   else return "party time!!";
 }
-console.log(boredom4(staff));
+// console.log(boredom4(staff));
+
+//THE OFFICE VI - SABBATICAL
+/*
+https://www.codewars.com/kata/57fe50d000d05166720000b1
+You need to approach your boss. Her decision will be based on three parameters:
+val= your value to the organisation
+happ= her happiness level at the time of asking and finally
+The numbers of letters from 'sabbatical' that are present in string 'x'.
+Note that if x contains three instances of the letter 'l', that still scores three points, 
+even though there is only one in the word sabbatical.
+If the sum of the three parameters (as described above) is > 22, return 'Sabbatical! Boom!', 
+else return 'Back to your desk, boy.'.
+*/
+function sabb(s, val, happiness) {
+  let sum = 0;
+  ["s", "a", "b", "t", "i", "c", "l"].forEach((el) => {
+    let regExp = new RegExp(el, "g");
+    if (!s.includes(el)) sum = sum;
+    else sum += s.toLowerCase().match(regExp).length;
+  });
+  sum += val + happiness;
+  return sum > 22 ? "Sabbatical! Boom!" : "Back to your desk, boy.";
+}
+
+function sabb2(x, val, happ) {
+  return (x.match(/[sabbatical]/gi) || []).length + val + happ > 22
+    ? "Sabbatical! Boom!"
+    : "Back to your desk, boy.";
+}
+
+function sabb3(s, val, happiness) {
+  let sum = 0;
+  ["s", "a", "b", "t", "i", "c", "l"].forEach((el) => {
+    console.log(s.split(el).length - 1);
+
+    !s.includes(el) ? (sum = sum) : (sum += s.split(el).length - 1);
+  });
+  sum += val + happiness;
+  return sum > 22 ? "Sabbatical! Boom!" : "Back to your desk, boy.";
+}
+
+console.log(sabb2("Can I have a sabbatical?", 5, 5)); //should return 'Sabbatical! Boom!'
