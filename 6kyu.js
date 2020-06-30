@@ -29,8 +29,50 @@ function comp2(array1, array2) {
   array2.sort((a, b) => a - b);
   return array1.map((v) => v * v).every((v, i) => v == array2[i]);
 }
-
 // console.log(comp2(c, d));
+
+//ARRAY.DIF
+/*
+https://www.codewars.com/kata/523f5d21c841566fde000009/train/javascript
+Your goal in this kata is to implement a difference function, which subtracts one 
+list from another and returns the result.
+It should remove all values from list a, which are present in list b.
+arrayDiff([1,2],[1]) == [2]
+If a value is present in b, all of its occurrences must be removed from the other:
+arrayDiff([1,2,2,2,3],[2]) == [1,3]
+*/
+function arrayDiff(a, b) {
+  for (let i = 0; i <= a.length; i++) {
+    b.forEach((el) => {
+      if (el === a[i]) {
+        a.splice(i, 1);
+
+        i--;
+      }
+    });
+  }
+  return a;
+}
+
+function arrayDiff2(a, b) {
+  let filtered = [];
+  a.filter((e) => {
+    if (!b.includes(e)) filtered.push(e);
+  });
+  return filtered;
+}
+
+function arrayDiff3(a, b) {
+  return a.filter((e) => !b.includes(e));
+}
+
+function arrayDiff4(a, b) {
+  return a.filter(function (x) {
+    return b.indexOf(x) == -1;
+  });
+}
+
+console.log(arrayDiff4([1, 2, 2, 2, 3], [2]));
 
 //WEEK 5 DAY 1
 //https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/javascript
