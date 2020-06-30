@@ -757,3 +757,41 @@ function sabb3(s, val, happiness) {
 }
 
 // console.log(sabb2("Can I have a sabbatical?", 5, 5)); //should return 'Sabbatical! Boom!'
+
+// REVERSE A NUMBER
+//https://www.codewars.com/kata/reverse-a-number/train/javascript
+/*
+Given a number, write a function to output its reverse digits. (e.g. given 123 the answer is 321)
+Numbers should preserve their sign; i.e. a negative number should still be negative when reversed.
+
+Examples
+ 123 ->  321
+-456 -> -654
+1000 ->    1
+*/
+function reverseNumber(n) {
+  let result = Array.from(String(n)).reverse().join("");
+  if (result.includes("-")) {
+    return Number(-result.substr(0, result.length - 1));
+  }
+  return Number(result);
+}
+
+const reverseNumber2 = (n) =>
+  //parseInt(Array.from(String(n)).reverse().join("")) * Math.sign(n);
+  parseInt(n.toString().split("").reverse().join("")) * Math.sign(n);
+
+function reverseNumber3(n) {
+  const reversedStr = n.toString().split("").reverse().join("");
+  const reversedNum = parseInt(reversedStr);
+  return reversedNum * Math.sign(n);
+  /*  
+  if (n >= 0) {
+    return reversedNum;
+  } else if (n < 0) {
+    return reversedNum * -1;
+  }
+*/
+}
+
+console.log(reverseNumber2(-456));
