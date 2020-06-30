@@ -72,7 +72,7 @@ function arrayDiff4(a, b) {
   });
 }
 
-console.log(arrayDiff4([1, 2, 2, 2, 3], [2]));
+// console.log(arrayDiff4([1, 2, 2, 2, 3], [2]));
 
 //WEEK 5 DAY 1
 //https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/javascript
