@@ -286,15 +286,50 @@ let chuck = {
   },
 };
 
-chuck.displayInfo();
+// chuck.displayInfo();
 
-console.log("getAge", chuck.getAge()); // Should return 79 if you are in 2019
+// console.log("getAge", chuck.getAge()); // Should return 79 if you are in 2019
 
-chuck.addJoke("Chuck Norris can divide by zero.");
-console.log("getRandomJoke", chuck.getRandomJoke());
-chuck.addJoke("Chuck Norris kills flies with his gun.");
-console.log("getRandomJoke", chuck.getRandomJoke());
-chuck.addJoke("Chuck Norris was once in a knife fight, and the knife lost.");
-console.log("getRandomJoke", chuck.getRandomJoke());
+// chuck.addJoke("Chuck Norris can divide by zero.");
+// console.log("getRandomJoke", chuck.getRandomJoke());
+// chuck.addJoke("Chuck Norris kills flies with his gun.");
+// console.log("getRandomJoke", chuck.getRandomJoke());
+// chuck.addJoke("Chuck Norris was once in a knife fight, and the knife lost.");
+// console.log("getRandomJoke", chuck.getRandomJoke());
 
-chuck.displayInfo();
+// chuck.displayInfo();
+
+//EXERCISE 10. OOP, CLASS AND INHERITANCE
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  calculatePerimeter() {
+    return this.width * 2 + this.height * 2;
+  }
+
+  calculateArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  constructor(side) {
+    super(side, side);
+  }
+}
+
+// var r1 = new Rectangle(6, 7);
+// console.log("Perimeter of r1 =", r1.calculatePerimeter()); // 26
+// console.log("Area of r1 =", r1.calculateArea()); // 42
+
+// var s1 = new Square(5);
+// console.log(s1);
+// console.log("Perimeter of s1 =", s1.calculatePerimeter()); // 20
+// console.log("Area of s1 =", s1.calculateArea()); // 25
+
+// var s2 = new Square(10);
+// console.log("Perimeter of s2 =", s2.calculatePerimeter()); // 40
+// console.log("Area of s2 =", s2.calculateArea()); // 100
