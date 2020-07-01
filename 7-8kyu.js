@@ -794,4 +794,4 @@ function reverseNumber3(n) {
 */
 }
 
-console.log(reverseNumber2(-456));
+// console.log(reverseNumber2(-456));
