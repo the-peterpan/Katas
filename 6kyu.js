@@ -121,30 +121,6 @@ function twoSum(numbers, target) {
 //let answer = twoSum(arr, target);
 //console.log(twoSum(arr, target));
 
-//www.codewars.com/kata/517abf86da9663f1d2000003
-//Complete the method/function so that it converts dash/underscore delimited words
-//into camel casing. The first word within the output should be capitalized only if
-//the original word was capitalized (known as Upper Camel Case, also often referred
-//to as Pascal case).
-
-let str = "the-stealth-warrior"; // returns "theStealthWarrior"
-
-function toCamelCase(str) {
-  let arr = str.split("-");
-  let capsArr = [];
-  for (i = 0; i < arr.length; i++) {
-    //if (arr[0].charAt(0) === arr[0].charAt(0).toUpperCase()) {
-    //console.log("X");
-    // } else {
-    capsArr += arr[i][0].toUpperCase() + arr[i].slice(1);
-    // }
-  }
-  return capsArr;
-}
-
-// let answer = toCamelCase(str);
-// console.log(answer);
-
 //In this kata, you've to count lowercase letters in a given string and return the letter
 // count in a hash with 'letter' as key and count as 'value'. The key must be
 //'symbol' instead of string in Ruby and 'char' instead of string in Crystal.
@@ -267,4 +243,95 @@ function cleanString(s) {
 cleanString2 = (s) =>
   s.split("").reduce((r, e) => (e == "#" ? r.slice(0, -1) : r + e), "");
 
-console.log(cleanString2("abc####d##c#"));
+// console.log(cleanString2("abc####d##c#"));
+
+//BUILD TOWER
+//https://www.codewars.com/kata/576757b1df89ecf5bd00073b/train/javascript
+/*
+Build Tower by the following given argument:
+number of floors (integer and always greater than 0).
+Tower block is represented as *
+for example, a tower of 3 floors looks like below
+[
+  '  *  ',
+  ' *** ',
+  '*****' 
+]
+and a tower of 6 floors looks like below
+[
+  '     *     ',  //0 index: 1 star
+  '    ***    ', //1 index: 3 stars
+  '   *****   ', //2: 5 stars
+  '  *******  ', //3: 7 stars
+  ' ********* ', //4: 9 stars
+  '***********' //5: 11 stars
+]
+*/
+function towerBuilder(nFloors) {
+  let towerArray = [];
+  let star = "*";
+  for (i = 0; i < nFloors; i++) {
+    towerArray[i] = star.repeat(2 * i + 1);
+    let space = " ".repeat(nFloors - i - 1);
+    let spacesLeftWithTower = space.concat(towerArray[i]);
+    towerArray[i] = spacesLeftWithTower + space;
+  }
+  return towerArray;
+}
+
+const towerBuilder2 = (n) =>
+  [...Array(n)].map((curVal, i) => {
+    curVal =
+      " ".repeat(n - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(n - i - 1);
+    return curVal;
+  });
+//Above refactored:
+const towerBuilder3 = (n) =>
+  [...Array(n)].map(
+    (_, i) =>
+      " ".repeat(n - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(n - i - 1)
+  );
+
+// console.log(towerBuilder2(5));
+
+//CONVERT STRING TO CAMEL CASE
+//www.codewars.com/kata/517abf86da9663f1d2000003
+/*
+Complete the method/function so that it converts dash/underscore delimited words into camel casing. 
+The first word within the output should be capitalized only if the original word was capitalized 
+(known as Upper Camel Case, also often referred to as Pascal case).
+Examples
+toCamelCase("the-stealth-warrior") // returns "theStealthWarrior"
+toCamelCase("The_Stealth_Warrior") // returns "TheStealthWarrior"
+*/
+
+function toCamelCase(str) {
+  let strArr = [];
+  if (str.includes("-")) strArr = str.split("-");
+  if (str.includes("_")) strArr = str.split("_");
+  for (i = 1; i < strArr.length; i++) {
+    firstLetter = strArr[i].charAt(0).toUpperCase();
+    strArr[i] = firstLetter + strArr[i].slice(1, strArr[i].length);
+  }
+  return strArr.join("");
+}
+
+function toCamelCase2(str) {
+  let strArr = str.split(/-|_/g);
+  let result = [];
+  strArr.slice(1).map((word) => {
+    result += word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  return strArr[0] + result;
+}
+
+function toCamelCase3(str) {
+  return str
+    .split(/-|_/g)
+    .map(
+      (w, i) => (i > 0 ? w.charAt(0).toUpperCase() : w.charAt(0)) + w.slice(1)
+    )
+    .join("");
+}
+
+console.log(toCamelCase3("The_stealth_warrior"));
