@@ -334,4 +334,51 @@ function toCamelCase3(str) {
     .join("");
 }
 
-console.log(toCamelCase3("The_stealth_warrior"));
+// console.log(toCamelCase3("The_stealth_warrior"));
+
+//COUNT CHARACTERS IN YOUR STRING
+/*
+https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/javascript
+The main idea is to count all the occurring characters(UTF-8) in string. 
+If you have string like this aba then the result should be { 'a': 2, 'b': 1 }
+What if the string is empty ? Then the result should be empty object literal { }
+*/
+
+//for loop
+function count(string) {
+  let result = {};
+  strArr = [...string];
+  for (i = 0; i < strArr.length; i++) {
+    if (result.hasOwnProperty(strArr[i])) {
+      result[strArr[i]]++;
+    } else result[strArr[i]] = 1;
+  }
+  return result;
+}
+
+//forEach
+function count2(string) {
+  let result = {};
+  [...string].forEach((el) => {
+    if (result[el]) result[el]++;
+    else result[el] = 1;
+  });
+
+  return result;
+}
+
+//reduce
+const count3 = (s) => {
+  const array = s.split("");
+  const result = array.reduce((acc, val) => {
+    if (val in acc) {
+      console.log(val, acc, acc[val]);
+      return { ...acc, [val]: acc[val] + 1 };
+    } else {
+      return { ...acc, [val]: 1 };
+      b;
+    }
+  }, {});
+  return result;
+};
+console.log(count3("ssseee"));
