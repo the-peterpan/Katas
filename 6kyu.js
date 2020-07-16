@@ -31,7 +31,7 @@ function comp2(array1, array2) {
 }
 // console.log(comp2(c, d));
 
-//ARRAY.DIF
+//ARRAY.DIFF
 /*
 https://www.codewars.com/kata/523f5d21c841566fde000009/train/javascript
 Your goal in this kata is to implement a difference function, which subtracts one 
@@ -46,7 +46,6 @@ function arrayDiff(a, b) {
     b.forEach((el) => {
       if (el === a[i]) {
         a.splice(i, 1);
-
         i--;
       }
     });
@@ -71,14 +70,11 @@ function arrayDiff4(a, b) {
     return b.indexOf(x) == -1;
   });
 }
-
 // console.log(arrayDiff4([1, 2, 2, 2, 3], [2]));
 
-//WEEK 5 DAY 1
+//COUNT CHARACTERS IN YOUR STRING
 //https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/javascript
 
-//convert to array
-//for each element in array, take the element and add count to corresponding pile(ie value for that key)
 myString = "aba"; // { a: 2, b: 1 });
 
 function count(string) {
@@ -95,126 +91,9 @@ function count(string) {
   });
   return object;
 }
+// count(myString);
 
-//count(myString);
-
-//WEEK 5 DAY 2. https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/javascript
-//Write a function that takes an array of numbers (integers for the tests) and a target
-//number. It should find two different items in the array that, when added together, give
-//the target value. The indices of these items should then be returned in a tuple like so: (index1, index2).
-
-let arr = [1, 2, 3];
-let target = 4;
-//answer should be (0, 2)
-
-function twoSum(numbers, target) {
-  for (number of numbers) {
-    for (let i = 1; i < numbers.length; i++) {
-      if (number + numbers[i] === target) {
-        console.log(number, numbers.indexOf(number), numbers[i], i);
-        return [numbers.indexOf(number), i];
-      }
-    }
-  }
-}
-
-//let answer = twoSum(arr, target);
-//console.log(twoSum(arr, target));
-
-//In this kata, you've to count lowercase letters in a given string and return the letter
-// count in a hash with 'letter' as key and count as 'value'. The key must be
-//'symbol' instead of string in Ruby and 'char' instead of string in Crystal.
-//EG: letterCount('arithmetics') #=> {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}
-
-let str1 = "code";
-
-function letter_count(str) {
-  let newStr = str.split("");
-  let counter = 0;
-  let object = {};
-  for (i = 0; i < newStr.length; i++) {
-    if (letter in object) {
-      object = {};
-      key = newStr.charAt([i]);
-      value = i++;
-      console.log(key, value);
-    }
-    // let key = newStr.charAt([i]);
-    // object.key = ;
-    // console.log(object);
-  }
-  //return object;
-}
-
-// letter_count(str1);
-
-//https://www.codewars.com/kata/52774a314c2333f0a7000688
-
-//https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
-
-// accum("abcd") -> "A-Bb-Ccc-Dddd"
-// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
-// accum("cwAt") -> "C-Ww-Aaa-Tttt"
-
-function accum(s) {
-  let sStr = s.split("");
-  //console.log(sStr);
-  //   let arr = [];
-  //   //let repeat = "";
-  //   for (i = 0; i < sStr.length; i++) {
-  //     sStr += sStr[i];
-  //   let (j = 0; j < i.length; j++) {
-  // console.log(j);
-  //   }
-
-  //   arr.push(s[i]);
-  //return arr; //console.log(res, repeat);
-}
-
-// console.log(accum("abcd"));
-
-// console.log(
-//   ["a", "b", "c", "d"].reduce(function (res, current, index, array) {
-//     return res.concat([current, current]);
-//   }, [])
-// );
-
-//https://www.codewars.com/kata/57b06f90e298a7b53d000a86
-
-function queueTime(arr, numTills) {
-  let result = [];
-  for (i = 0; i < numTills; i++) {
-    results.push(0);
-  }
-
-  // arr.forEach((el) => {
-  //   if (el) i.push(el);
-  //   console.log("i", i);
-  // });
-}
-
-// console.log(queueTime([10, 2, 3, 3], 2));
-
-// first solution:
-function removeEveryOther(arr) {
-  let newArray = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (i % 0 !== 2) {
-      newArray.push(arr[i]);
-    }
-  }
-  return newArray;
-}
-
-// second solution:
-function removeEveryOther(arr) {
-  let newArray = [];
-  for (let i = 0; i < arr.length; i += 2) {
-    newArray.push(arr[i]);
-  }
-  return newArray;
-}
-
+//BACKSPACES IN STRING
 /*
 https://www.codewars.com/kata/backspaces-in-string/train/javascript
 Assume "#" is like a backspace in string. This means that string "a#bc#d" actually is "bd"
@@ -291,7 +170,6 @@ const towerBuilder3 = (n) =>
     (_, i) =>
       " ".repeat(n - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(n - i - 1)
   );
-
 // console.log(towerBuilder2(5));
 
 //CONVERT STRING TO CAMEL CASE
@@ -333,7 +211,6 @@ function toCamelCase3(str) {
     )
     .join("");
 }
-
 // console.log(toCamelCase3("The_stealth_warrior"));
 
 //COUNT CHARACTERS IN YOUR STRING
@@ -376,9 +253,123 @@ const count3 = (s) => {
       return { ...acc, [val]: acc[val] + 1 };
     } else {
       return { ...acc, [val]: 1 };
-      b;
     }
   }, {});
   return result;
 };
-console.log(count3("ssseee"));
+// console.log(count3("ssseee"));
+
+//https://www.codewars.com/kata/5808ff71c7cfa1c6aa00006d/train/javascript
+/*
+In this kata, you've to count lowercase letters in a given string and return the letter
+count in a hash with 'letter' as key and count as 'value'. The key must be
+'symbol' instead of string in Ruby and 'char' instead of string in Crystal.
+EG: letterCount('arithmetics') #=> {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}
+*/
+function letterCount(str) {
+  let counter = 0;
+  let result = {};
+  [...str].forEach((letter) => {
+    console.log(letter);
+    if (result[letter]) result[letter]++;
+    else result[letter] = 1;
+  });
+
+  return result;
+}
+
+letterCount2 = (str) =>
+  [...str].reduce((acc, val) => {
+    acc[val] = acc[val] ? acc[val] + 1 : 1;
+    return acc;
+  }, {});
+console.log(letterCount2("codewwwarsss"));
+
+//
+//https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/javascript
+/*
+Write a function that takes an array of numbers (integers for the tests) and a target
+number. It should find two different items in the array that, when added together, give
+the target value. The indices of these items should then be returned in a tuple like so: (index1, index2).
+*/
+let arr = [1, 2, 3];
+let target = 4; //answer: (0, 2)
+
+function twoSum(numbers, target) {
+  for (number of numbers) {
+    for (let i = 1; i < numbers.length; i++) {
+      if (number + numbers[i] === target) {
+        console.log(number, numbers.indexOf(number), numbers[i], i);
+        return [numbers.indexOf(number), i];
+      }
+    }
+  }
+}
+//console.log(twoSum(arr, target));
+
+//https://www.codewars.com/kata/52774a314c2333f0a7000688
+
+//https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
+
+// accum("abcd") -> "A-Bb-Ccc-Dddd"
+// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// accum("cwAt") -> "C-Ww-Aaa-Tttt"
+
+function accum(s) {
+  let sStr = s.split("");
+  //console.log(sStr);
+  //   let arr = [];
+  //   //let repeat = "";
+  //   for (i = 0; i < sStr.length; i++) {
+  //     sStr += sStr[i];
+  //   let (j = 0; j < i.length; j++) {
+  // console.log(j);
+  //   }
+
+  //   arr.push(s[i]);
+  //return arr; //console.log(res, repeat);
+}
+
+// console.log(accum("abcd"));
+
+// console.log(
+//   ["a", "b", "c", "d"].reduce(function (res, current, index, array) {
+//     return res.concat([current, current]);
+//   }, [])
+// );
+
+//https://www.codewars.com/kata/57b06f90e298a7b53d000a86
+
+function queueTime(arr, numTills) {
+  let result = [];
+  for (i = 0; i < numTills; i++) {
+    results.push(0);
+  }
+
+  // arr.forEach((el) => {
+  //   if (el) i.push(el);
+  //   console.log("i", i);
+  // });
+}
+
+// console.log(queueTime([10, 2, 3, 3], 2));
+
+// first solution:
+function removeEveryOther(arr) {
+  let newArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 0 !== 2) {
+      newArray.push(arr[i]);
+    }
+  }
+  return newArray;
+}
+
+// second solution:
+function removeEveryOther(arr) {
+  let newArray = [];
+  for (let i = 0; i < arr.length; i += 2) {
+    newArray.push(arr[i]);
+  }
+  return newArray;
+}
