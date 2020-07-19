@@ -285,7 +285,7 @@ letterCount2 = (str) =>
   }, {});
 console.log(letterCount2("codewwwarsss"));
 
-//
+//TWO SUM
 //https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/javascript
 /*
 Write a function that takes an array of numbers (integers for the tests) and a target
@@ -299,15 +299,21 @@ function twoSum(numbers, target) {
   for (number of numbers) {
     for (let i = 1; i < numbers.length; i++) {
       if (number + numbers[i] === target) {
-        console.log(number, numbers.indexOf(number), numbers[i], i);
         return [numbers.indexOf(number), i];
       }
     }
   }
 }
-//console.log(twoSum(arr, target));
+// console.log(twoSum(arr, target));
 
-//https://www.codewars.com/kata/52774a314c2333f0a7000688
+************************************************
+//VALID PARENTHESES 
+/*
+https://www.codewars.com/kata/52774a314c2333f0a7000688
+Write a function called that takes a string of parentheses, 
+and determines if the order of the parentheses is valid. The 
+function should return true if the string is valid, and false if it's invalid.
+*/
 
 //https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
 
@@ -338,8 +344,10 @@ function accum(s) {
 //   }, [])
 // );
 
-//https://www.codewars.com/kata/57b06f90e298a7b53d000a86
-
+//QUEUE TIME
+/*
+https://www.codewars.com/kata/57b06f90e298a7b53d000a86
+*/
 function queueTime(arr, numTills) {
   let result = [];
   for (i = 0; i < numTills; i++) {
