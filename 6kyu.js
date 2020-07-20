@@ -283,7 +283,7 @@ letterCount2 = (str) =>
     acc[val] = acc[val] ? acc[val] + 1 : 1;
     return acc;
   }, {});
-console.log(letterCount2("codewwwarsss"));
+// console.log(letterCount2("codewwwarsss"));
 
 //TWO SUM
 //https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/javascript
@@ -306,43 +306,42 @@ function twoSum(numbers, target) {
 }
 // console.log(twoSum(arr, target));
 
-************************************************
-//VALID PARENTHESES 
+//Find The Parity Outlier
 /*
-https://www.codewars.com/kata/52774a314c2333f0a7000688
-Write a function called that takes a string of parentheses, 
-and determines if the order of the parentheses is valid. The 
-function should return true if the string is valid, and false if it's invalid.
+https://www.codewars.com/kata/5526fc09a1bbd946250002dc/train/javascript
+You are given an array (which will have a length of at least 3, but could be very large) containing integers. 
+The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single 
+integer N. Write a method that takes the array as an argument and returns this "outlier" N.
+Examples
+[2, 4, 0, 100, 4, 11, 2602, 36]
+Should return: 11 (the only odd number)
+[160, 3, 1719, 19, 11, 13, -21]
+Should return: 160 (the only even number)
 */
 
-//https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
+function findOutlier(integers) {
+  let outlier;
+  let evenIntegers = [];
+  integers.forEach((number) => {
+    if (number % 2 === 0) evenIntegers.push(number);
+  });
+  if (evenIntegers.length === 1) outlier = evenIntegers[0];
+  else outlier = integers.filter((number) => number % 2 !== 0)[0];
 
-// accum("abcd") -> "A-Bb-Ccc-Dddd"
-// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
-// accum("cwAt") -> "C-Ww-Aaa-Tttt"
-
-function accum(s) {
-  let sStr = s.split("");
-  //console.log(sStr);
-  //   let arr = [];
-  //   //let repeat = "";
-  //   for (i = 0; i < sStr.length; i++) {
-  //     sStr += sStr[i];
-  //   let (j = 0; j < i.length; j++) {
-  // console.log(j);
-  //   }
-
-  //   arr.push(s[i]);
-  //return arr; //console.log(res, repeat);
+  return outlier;
 }
 
-// console.log(accum("abcd"));
+const findOutlier2 = (a) => {
+  let odds = [];
+  let evens = [];
+  for (let num of a) {
+    num % 2 === 0 ? evens.push(num) : odds.push(num);
+  }
+  return odds.length > 1 ? evens[0] : odds[0];
+};
 
-// console.log(
-//   ["a", "b", "c", "d"].reduce(function (res, current, index, array) {
-//     return res.concat([current, current]);
-//   }, [])
-// );
+console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])); // 11
+console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])); //160
 
 //QUEUE TIME
 /*
