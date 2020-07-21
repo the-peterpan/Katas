@@ -339,9 +339,58 @@ const findOutlier2 = (a) => {
   }
   return odds.length > 1 ? evens[0] : odds[0];
 };
+// console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])); // 11
+// console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])); //160
 
-console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])); // 11
-console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])); //160
+//MAGIC THE GATHERING #1 CREATURES
+/*
+https://www.codewars.com/kata/567af2c8b46252f78400004d/train/javascript
+*/
+player1 = [
+  [1, 1],
+  [2, 1],
+  [2, 2],
+  [5, 5],
+];
+player2 = [
+  [1, 2],
+  [1, 2],
+  [3, 3],
+];
+//Result:
+//{ 'player1': [[5, 5]],
+//  'player2': [[1, 2], [3, 3]] }
+
+function battle(player1, player2) {
+  let length = 0;
+  player1.length > player2.length
+    ? (length = player1.length)
+    : (length = player2.length);
+  const deliverDamage = 0;
+  const toughness = 1;
+  let player1Survivors = [];
+  let player2Survivors = [];
+
+  for (i = 0; i < length; i++) {
+    if (!player1[i]) {
+      player2Survivors.push(player2[i]);
+      continue;
+    }
+    if (!player2[i]) {
+      player1Survivors.push(player1[i]);
+      continue;
+    }
+
+    if (player1[i][toughness] > player2[i][deliverDamage]) {
+      player1Survivors.push(player1[i]);
+    }
+    if (player2[i][toughness] > player1[i][deliverDamage]) {
+      player2Survivors.push(player2[i]);
+    }
+  }
+  return { player1: player1Survivors, player2: player2Survivors };
+}
+console.log(battle(player1, player2));
 
 //QUEUE TIME
 /*
