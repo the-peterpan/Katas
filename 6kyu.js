@@ -1,7 +1,7 @@
 //ARE THEY THE SAME?
 /*
 https://www.codewars.com/kata/550498447451fbbd7600041c
-Given two arrays a and b write a function comp(a, b) (compSame(a, b) in Clojure) that checks whether the two arrays have the "same" 
+Given two numStrs a and b write a function comp(a, b) (compSame(a, b) in Clojure) that checks whether the two numStrs have the "same" 
 elements, with the same multiplicities. "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
 */
 let a = [121, 144, 19, 161, 19, 144, 19, 11];
@@ -11,10 +11,10 @@ let b = [121, 14641, 20736, 361, 25921, 361, 20736, 361];
 let c = [69, 14, 37, 19];
 let d = [4761, 196, 1369, 362];
 
-function comp(array1, array2) {
-  if (array1 === null || array2 === null) return false;
-  let sorted1 = array1.sort((a, b) => a - b);
-  let sorted2 = array2.sort((a, b) => a - b);
+function comp(numStr1, numStr2) {
+  if (numStr1 === null || numStr2 === null) return false;
+  let sorted1 = numStr1.sort((a, b) => a - b);
+  let sorted2 = numStr2.sort((a, b) => a - b);
   for (i = 0; i < sorted1.length; i++) {
     if (sorted1[i] * sorted1[i] !== sorted2[i]) {
       return false;
@@ -23,25 +23,25 @@ function comp(array1, array2) {
   return true;
 }
 
-function comp2(array1, array2) {
-  if (array1 == null || array2 == null) return false;
-  array1.sort((a, b) => a - b);
-  array2.sort((a, b) => a - b);
-  return array1.map((v) => v * v).every((v, i) => v == array2[i]);
+function comp2(numStr1, numStr2) {
+  if (numStr1 == null || numStr2 == null) return false;
+  numStr1.sort((a, b) => a - b);
+  numStr2.sort((a, b) => a - b);
+  return numStr1.map((v) => v * v).every((v, i) => v == numStr2[i]);
 }
 // console.log(comp2(c, d));
 
-//ARRAY.DIFF
+//numStr.DIFF
 /*
 https://www.codewars.com/kata/523f5d21c841566fde000009/train/javascript
 Your goal in this kata is to implement a difference function, which subtracts one 
 list from another and returns the result.
 It should remove all values from list a, which are present in list b.
-arrayDiff([1,2],[1]) == [2]
+numStrDiff([1,2],[1]) == [2]
 If a value is present in b, all of its occurrences must be removed from the other:
-arrayDiff([1,2,2,2,3],[2]) == [1,3]
+numStrDiff([1,2,2,2,3],[2]) == [1,3]
 */
-function arrayDiff(a, b) {
+function numStrDiff(a, b) {
   for (let i = 0; i <= a.length; i++) {
     b.forEach((el) => {
       if (el === a[i]) {
@@ -53,7 +53,7 @@ function arrayDiff(a, b) {
   return a;
 }
 
-function arrayDiff2(a, b) {
+function numStrDiff2(a, b) {
   let filtered = [];
   a.filter((e) => {
     if (!b.includes(e)) filtered.push(e);
@@ -61,16 +61,16 @@ function arrayDiff2(a, b) {
   return filtered;
 }
 
-function arrayDiff3(a, b) {
+function numStrDiff3(a, b) {
   return a.filter((e) => !b.includes(e));
 }
 
-function arrayDiff4(a, b) {
+function numStrDiff4(a, b) {
   return a.filter(function (x) {
     return b.indexOf(x) == -1;
   });
 }
-// console.log(arrayDiff4([1, 2, 2, 2, 3], [2]));
+// console.log(numStrDiff4([1, 2, 2, 2, 3], [2]));
 
 //COUNT CHARACTERS IN YOUR STRING
 //https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/javascript
@@ -147,26 +147,26 @@ and a tower of 6 floors looks like below
 ]
 */
 function towerBuilder(nFloors) {
-  let towerArray = [];
+  let towernumStr = [];
   let star = "*";
   for (i = 0; i < nFloors; i++) {
-    towerArray[i] = star.repeat(2 * i + 1);
+    towernumStr[i] = star.repeat(2 * i + 1);
     let space = " ".repeat(nFloors - i - 1);
-    let spacesLeftWithTower = space.concat(towerArray[i]);
-    towerArray[i] = spacesLeftWithTower + space;
+    let spacesLeftWithTower = space.concat(towernumStr[i]);
+    towernumStr[i] = spacesLeftWithTower + space;
   }
-  return towerArray;
+  return towernumStr;
 }
 
 const towerBuilder2 = (n) =>
-  [...Array(n)].map((curVal, i) => {
+  [...numStr(n)].map((curVal, i) => {
     curVal =
       " ".repeat(n - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(n - i - 1);
     return curVal;
   });
 //Above refactored:
 const towerBuilder3 = (n) =>
-  [...Array(n)].map(
+  [...numStr(n)].map(
     (_, i) =>
       " ".repeat(n - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(n - i - 1)
   );
@@ -246,8 +246,8 @@ function count2(string) {
 
 //reduce
 const count3 = (s) => {
-  const array = s.split("");
-  const result = array.reduce((acc, val) => {
+  const numStr = s.split("");
+  const result = numStr.reduce((acc, val) => {
     if (val in acc) {
       console.log(val, acc, acc[val]);
       return { ...acc, [val]: acc[val] + 1 };
@@ -288,8 +288,8 @@ letterCount2 = (str) =>
 //TWO SUM
 //https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/javascript
 /*
-Write a function that takes an array of numbers (integers for the tests) and a target
-number. It should find two different items in the array that, when added together, give
+Write a function that takes an numStr of numbers (integers for the tests) and a target
+number. It should find two different items in the numStr that, when added together, give
 the target value. The indices of these items should then be returned in a tuple like so: (index1, index2).
 */
 let arr = [1, 2, 3];
@@ -309,9 +309,9 @@ function twoSum(numbers, target) {
 //Find The Parity Outlier
 /*
 https://www.codewars.com/kata/5526fc09a1bbd946250002dc/train/javascript
-You are given an array (which will have a length of at least 3, but could be very large) containing integers. 
-The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single 
-integer N. Write a method that takes the array as an argument and returns this "outlier" N.
+You are given an numStr (which will have a length of at least 3, but could be very large) containing integers. 
+The numStr is either entirely comprised of odd integers or entirely comprised of even integers except for a single 
+integer N. Write a method that takes the numStr as an argument and returns this "outlier" N.
 Examples
 [2, 4, 0, 100, 4, 11, 2602, 36]
 Should return: 11 (the only odd number)
@@ -390,7 +390,50 @@ function battle(player1, player2) {
   }
   return { player1: player1Survivors, player2: player2Survivors };
 }
-console.log(battle(player1, player2));
+// console.log(battle(player1, player2));
+
+//PERSISTENT BUGGER
+/*
+https://www.codewars.com/kata/55bf01e5a717a0d57e0000ec
+Write a function, persistence, that takes in a positive parameter num and returns its
+multiplicative persistence, which is the number of times you must multiply the digits
+in num until you reach a single digit.
+For example:
+ persistence(39) === 3 // because 3*9 = 27, 2*7 = 14, 1*4=4
+                       // and 4 has only one digit
+ persistence(999) === 4 // because 9*9*9 = 729, 7*2*9 = 126,
+                        // 1*2*6 = 12, and finally 1*2 = 2
+ persistence(4) === 0 // because 4 is already a one-digit number
+*/
+
+function persistence(num) {
+  if (num <= 9 && num > 0) return 0;
+  let sum = 1;
+  let numStr = num.toString();
+  let counter = 0;
+  do {
+    for (i = 0; i < numStr.length; i++) {
+      sum = sum * numStr[i];
+    }
+    numStr = sum.toString();
+    sum = 1;
+    counter += 1;
+  } while (numStr.length > 1);
+  return counter;
+}
+
+function persistence2(num) {
+  let counter = 0;
+  while (num.toString().length > 1) {
+    num = num.toString().split("");
+    num = num.reduce((acum, currentValue) => {
+      return acum * currentValue;
+    });
+    counter++;
+  }
+  return counter;
+}
+console.log(persistence2(999));
 
 //QUEUE TIME
 /*
@@ -412,20 +455,20 @@ function queueTime(arr, numTills) {
 
 // first solution:
 function removeEveryOther(arr) {
-  let newArray = [];
+  let newnumStr = [];
   for (let i = 0; i < arr.length; i++) {
     if (i % 0 !== 2) {
-      newArray.push(arr[i]);
+      newnumStr.push(arr[i]);
     }
   }
-  return newArray;
+  return newnumStr;
 }
 
 // second solution:
 function removeEveryOther(arr) {
-  let newArray = [];
+  let newnumStr = [];
   for (let i = 0; i < arr.length; i += 2) {
-    newArray.push(arr[i]);
+    newnumStr.push(arr[i]);
   }
-  return newArray;
+  return newnumStr;
 }
