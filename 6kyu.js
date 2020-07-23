@@ -433,7 +433,43 @@ function persistence2(num) {
   }
   return counter;
 }
-console.log(persistence2(999));
+// console.log(persistence2(999));
+
+//STRING SUBPATTERN RECOGNITION
+/*
+https://www.codewars.com/kata/5a49f074b3bfa89b4c00002b
+In this kata you need to build a function to return either true/True or false/False if a string can be seen as 
+the repetition of a simpler/shorter subpattern or not.
+hasSubpattern("a") === false; //no repeated pattern
+hasSubpattern("aaaa") === true; //created repeating "a"
+hasSubpattern("abcd") === false; //no repeated pattern
+hasSubpattern("abababab") === true; //created repeating "ab"
+hasSubpattern("ababababa") === false; //cannot be entirely reproduced repeating a pattern
+*/
+function hasSubpattern(string) {
+  if (string.length === 1) return false;
+  for (i = 0; i < string.length / 2; i++) {
+    let aux = string.slice(0, i + 1).repeat(string.length / (i + 1));
+    if (aux === string) return true;
+  }
+  return false;
+}
+
+function hasSubpattern2(string) {
+  if (string.length === 1) return false;
+  let i = 0;
+  do {
+    let subString = string.substring(0, i + 1).repeat(string.length / (i + 1));
+    if (string === subString) return true;
+    i++;
+  } while (i < string.length / 2);
+  return false;
+}
+
+function hasSubpattern3(string) {
+  return (string + string).indexOf(string, 1) != string.length;
+}
+// console.log(hasSubpattern3("bGbG23"));
 
 //QUEUE TIME
 /*
