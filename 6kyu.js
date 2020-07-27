@@ -304,7 +304,25 @@ function twoSum(numbers, target) {
     }
   }
 }
-// console.log(twoSum(arr, target));
+const twoSum2 = (numbers, target) => {
+  let secondIndex;
+  for (let i = 0; i < numbers.length; i++) {
+    secondIndex = numbers.indexOf(target - numbers[i], i + 1);
+    if (secondIndex > -1) return [i, secondIndex];
+  }
+};
+//Solution with object as hash table
+const twoSum3 = (numbers, target) => {
+  const numsIndices = {};
+  numbers.forEach((el, index) => (numsIndices[el] = index));
+  for (let i = 0; i < numbers.length; i++) {
+    const difference = target - numbers[i];
+    if (numsIndices[difference] !== undefined) {
+      return [i, numsIndices[difference]];
+    }
+  }
+};
+// console.log(twoSum3(arr, target));
 
 //Find The Parity Outlier
 /*
@@ -520,24 +538,3 @@ const queueTime2 = (customers, n) => {
   return Math.max(...aux);
 };
 // console.log(queueTime2([10, 2, 3, 3], 2)); //10
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++
-// first solution:
-function removeEveryOther(arr) {
-  let newnumStr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (i % 0 !== 2) {
-      newnumStr.push(arr[i]);
-    }
-  }
-  return newnumStr;
-}
-
-// second solution:
-function removeEveryOther(arr) {
-  let newnumStr = [];
-  for (let i = 0; i < arr.length; i += 2) {
-    newnumStr.push(arr[i]);
-  }
-  return newnumStr;
-}
