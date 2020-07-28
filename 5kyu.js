@@ -22,12 +22,47 @@ function cakes(recipe, available) {
   }
   return Math.floor(Math.min(...result));
 }
-console.log(
-  cakes(
-    { flour: 500, sugar: 200, eggs: 1 },
-    { flour: 1200, sugar: 1200, eggs: 5, milk: 200 }
-  )
-); //2
+// console.log(
+//   cakes(
+//     { flour: 500, sugar: 200, eggs: 1 },
+//     { flour: 1200, sugar: 1200, eggs: 5, milk: 200 }
+//   )
+// ); //2
+
+//VALID PARENTHESES
+/*
+https://www.codewars.com/kata/52774a314c2333f0a7000688/train/javascript
+Write a function called that takes a string of parentheses, and determines if the order 
+of the parentheses is valid. The function should return true if the string is valid, and 
+false if it's invalid.
+Examples
+"()"              =>  true
+")(()))"          =>  false
+"("               =>  false
+"(())((()())())"  =>  true
+*/
+function validParentheses(parens) {
+  let left = 0;
+  for (i = 0; i < parens.length; i++) {
+    if (left < 0 || parens.length <= 1) return false;
+    if (parens[i] === "(") left++;
+    if (parens[i] === ")") left--;
+  }
+  if (left !== 0) return false;
+  return true;
+}
+const validParentheses2 = (p) => {
+  let queue = [];
+  for (let el of p) {
+    if (el === "(") {
+      queue.push(el);
+    } else if (queue.pop() !== "(") {
+      return false;
+    }
+  }
+  return queue.length === 0;
+};
+// console.log(validParentheses2("()"));
 
 // // first solution:
 // function removeEveryOther(arr) {
