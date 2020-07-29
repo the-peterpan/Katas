@@ -538,3 +538,26 @@ const queueTime2 = (customers, n) => {
   return Math.max(...aux);
 };
 // console.log(queueTime2([10, 2, 3, 3], 2)); //10
+
+//NUMBER OF ANAGRAMS IN AN ARRAY OF WORDS
+/*
+An anagram is a word, a phrase, or a sentence formed from another by rearranging its letters.
+An example of this is "angel", which is an anagram of "glean".
+Write a function that receives an array of words, and returns the total number of distinct
+pairs of anagramic words inside it.
+Some examples:
+There are 2 anagrams in the array ["dell", "ledl", "abc", "cba"]
+There are 7 anagrams in the array ["dell", "ledl", "abc", "cba", "bca", "bac"]
+*/
+function anagramCounter(wordsArray) {
+  let counter = 0;
+  let anagramsArr = wordsArray.map((word) => word.split("").sort().join(""));
+  console.log(anagramsArr);
+  for (i = 0; i < anagramsArr.length; i++) {
+    for (j = i + 1; j < anagramsArr.length; j++) {
+      if (anagramsArr[i] === anagramsArr[j]) counter++;
+    }
+  }
+  return counter;
+}
+console.log(anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"]));
