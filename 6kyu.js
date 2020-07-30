@@ -560,4 +560,28 @@ function anagramCounter(wordsArray) {
   }
   return counter;
 }
-console.log(anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"]));
+// console.log(anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"]));
+
+//TGI FRIDAY
+/*
+https://www.codewars.com/kata/5a0d6d8c6975982b5b000383
+We all love fridays, and even better if it is the last day of the month!
+In this kata you should write a function that will receive 2 parameters. Both are years, and indicates a range.
+Your work is to return the number of times a month ends with a Friday.
+If there is only one year provided, return the number of times a month ends on Friday on that year. Range bounds are inclusive in every case!
+For example, between 1901 and 2000, a month ends on Friday 171 times.
+*/
+//anchor date: Jan 1, 1800 was a Wednesday
+//A year is a leap year if it can be divided by 4, but can't be divided by 100, except of case when it can be divided by 400
+function lastDayIsFriday(initialYear, endYear) {
+  let counter = 0;
+  let friday = 5;
+  let numLeapYears = 0;
+  for (i = initialYear; i <= endYear; i++) {
+    if (i % 100 !== 0 && i % 4 === 0) numLeapYears++;
+    if (i % 400 === 0) numLeapYears++;
+  }
+
+  return numLeapYears;
+}
+console.log(lastDayIsFriday(1901, 2000)); //171
