@@ -562,17 +562,55 @@ function anagramCounter(wordsArray) {
 }
 // console.log(anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"]));
 
-//TGI FRIDAY
+//ARRAY.DIFF
+/*
+https://www.codewars.com/kata/523f5d21c841566fde000009/train/javascript
+Your goal in this kata is to implement a difference function, which subtracts one 
+list from another and returns the result.
+It should remove all values from list a, which are present in list b.
+arrayDiff([1,2],[1]) == [2]
+If a value is present in b, all of its occurrences must be removed from the other:
+arrayDiff([1,2,2,2,3],[2]) == [1,3]
+*/
+
+function arrayDiff(a, b) {
+  let result = [];
+  for (i = 0; i < b.length; i++) {
+    for (j = 0; j < a.length; j++) {
+      console.log("b:", b[i], "a:", a[j]);
+      if (b[i] === a[j]) {
+        a.splice(j, 1);
+        j--;
+      }
+      console.log(a);
+    }
+  }
+  return a;
+}
+
+// using filter and a check if b does not include the element from a
+const array_diff = (a, b) => {
+  const filtered = a.filter((el) => {
+    // return b.indexOf(el) == -1
+    return !b.includes(el);
+  });
+  return filtered;
+};
+// console.log(arrayDiff([1, 2, 3, 2, 3], [2, 1]));
+
+//TGI FRIDAY - IN PROGRESS
 /*
 https://www.codewars.com/kata/5a0d6d8c6975982b5b000383
 We all love fridays, and even better if it is the last day of the month!
-In this kata you should write a function that will receive 2 parameters. Both are years, and indicates a range.
+In this kata you should write a function that will receive 2 parameters. 
+Both are years, and indicates a range.
 Your work is to return the number of times a month ends with a Friday.
 If there is only one year provided, return the number of times a month ends on Friday on that year. Range bounds are inclusive in every case!
 For example, between 1901 and 2000, a month ends on Friday 171 times.
 */
 //anchor date: Jan 1, 1800 was a Wednesday
-//A year is a leap year if it can be divided by 4, but can't be divided by 100, except of case when it can be divided by 400
+//A year is a leap year if it can be divided by 4, but can't be divided by 100,
+// except of case when it can be divided by 400
 function lastDayIsFriday(initialYear, endYear) {
   let counter = 0;
   let friday = 5;
