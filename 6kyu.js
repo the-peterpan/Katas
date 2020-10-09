@@ -259,6 +259,7 @@ const count3 = (s) => {
 };
 // console.log(count3("ssseee"));
 
+//COUNT LETTERS IN STRING
 //https://www.codewars.com/kata/5808ff71c7cfa1c6aa00006d/train/javascript
 /*
 In this kata, you've to count lowercase letters in a given string and return the letter
@@ -611,15 +612,18 @@ For example, between 1901 and 2000, a month ends on Friday 171 times.
 //anchor date: Jan 1, 1800 was a Wednesday
 //A year is a leap year if it can be divided by 4, but can't be divided by 100,
 // except of case when it can be divided by 400
-function lastDayIsFriday(initialYear, endYear) {
-  let counter = 0;
-  let friday = 5;
-  let numLeapYears = 0;
-  for (i = initialYear; i <= endYear; i++) {
-    if (i % 100 !== 0 && i % 4 === 0) numLeapYears++;
-    if (i % 400 === 0) numLeapYears++;
-  }
 
-  return numLeapYears;
+function lastDayIsFriday(initialYear, endYear) {
+  var counter = 0;
+  if (!endYear) var endYear = initialYear;
+
+  for (var i = initialYear; i <= endYear; i++) {
+    for (var j = 1; j <= 12; j++) {
+      var d = new Date(i, j, 0);
+      if (d.getDay() == 5) counter++;
+    }
+  }
+  return counter;
 }
+
 console.log(lastDayIsFriday(1901, 2000)); //171
