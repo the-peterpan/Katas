@@ -795,3 +795,49 @@ function reverseNumber3(n) {
 }
 
 // console.log(reverseNumber2(-456));
+
+
+//SORT A 2D ARRAY
+/*
+https://www.codewars.com/kata/587f46c9406f2dc381000009
+
+In the office we love to do amazing activities all together so we can share incredible
+experiences. This time, we decided to do bungee jumping. To decide the order we are
+going to jump, we need to create a sorter algorithm with the next rules.
+We will receive a list of names for each department, so at the end we will have a 2D array with different length
+We will return a normal array with all the names in the correct order.
+The sequence will be to add all the names sorted by the length of the name (ASC).
+In case there are more than one with the same length, sort them alphabetically.
+*/
+
+function nameSorter (departmentsArray) {
+let result = []
+for (i=0; i < departmentsArray.length; i++) {
+  for (j=0; j<departmentsArray[i].length; j++) {
+    result.push(departmentsArray[i][j]);
+  }
+}
+result.sort((a, b)=>{
+  if (a.length < b.length) return -1;
+  if (a.length > b.length) return 1;
+  if (a.length === b.length) {
+    a.localeCompare(b);
+  }
+})
+
+return result;
+}
+
+const nameSorter2 = function(departmentsArray) {
+  let result = departmentsArray.join().split(",");
+  //let result = [].concat(...departmentsArray));
+  result.sort((a,b)=> a.length - b.length || a.localeCompare(b));
+    return result;
+}
+
+function nameSorter3(departmentsArray) {
+  return departmentsArray.reduce((total,el)=>{
+    return total.concat(el)}).sort((a,b)=>{ return a.length-b.length || a.localeCompare(b)})
+  }
+
+console.log(nameSorter3([["T", "Brad", "Juan", "April", "Sally"], ["Juan", "Jennifer"], ["rain"]]));
