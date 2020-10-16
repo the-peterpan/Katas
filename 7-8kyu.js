@@ -840,4 +840,26 @@ function nameSorter3(departmentsArray) {
     return total.concat(el)}).sort((a,b)=>{ return a.length-b.length || a.localeCompare(b)})
   }
 
-console.log(nameSorter3([["T", "Brad", "Juan", "April", "Sally"], ["Juan", "Jennifer"], ["rain"]]));
+// console.log(nameSorter3([["T", "Brad", "Juan", "April", "Sally"], ["Juan", "Jennifer"], ["rain"]]));
+
+//VOWEL COUNT
+/*
+https://www.codewars.com/kata/54ff3102c1bad923760001f3
+Return the number (count) of vowels in the given string.
+We will consider a, e, i, o, u as vowels for this Kata (but not y).
+The input string will only consist of lower case letters and/or spaces.
+*/
+function getCount(str) {
+  let vowelsCount = 0;
+  for (i=0; i<str.length; i++) {
+    if (str[i] === "a" || str[i] === "e" || str[i] === "i" || str[i] === "o" || str[i] === "u")
+    vowelsCount++
+  }
+  
+  return vowelsCount;
+}
+
+function getCount2(str) {
+  return (str.match(/[aeiou]/ig)||[]).length;
+}
+// console.log(getCount2("abracadabra")); //5
