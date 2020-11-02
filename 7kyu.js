@@ -69,4 +69,33 @@ function getMiddle2(s)
   return s.substr(Math.ceil(s.length / 2 - 1), s.length % 2 === 0 ? 2 : 1);
 }
 
-console.log(getMiddle2("middle"));
+// console.log(getMiddle2("middle"));
+
+// HIGHEST AND LOWEST
+/*
+https://www.codewars.com/kata/554b4ac871d6813a03000035
+In this little assignment you are given a string of space separated 
+numbers, and have to return the highest and lowest number.
+
+Example:
+highAndLow("1 2 3 4 5");  // return "5 1"
+highAndLow("1 2 -3 4 5"); // return "5 -3"
+highAndLow("1 9 3 4 -5"); // return "9 -5"
+*/
+
+function highAndLow(numbers){
+  let numArr = [];
+  let stringArr = ([...numbers.split(' ')].map(element => {
+    if (Number(element) || (element === "0")) numArr.push(Number(element))
+    return Number(element)
+  }));
+
+  //alternatively:
+  //  numbers = numbers.split(' ').map(Number)
+  let min = Math.min.apply(Math, numArr)
+  let max = Math.max.apply(Math, numArr)
+  
+ return `${max} ${min}`;  
+}
+
+console.log(highAndLow("1 1 0"));
