@@ -91,11 +91,54 @@ function highAndLow(numbers){
   }));
 
   //alternatively:
-  //  numbers = numbers.split(' ').map(Number)
+  //numbers = numbers.split(' ').map(Number)
   let min = Math.min.apply(Math, numArr)
   let max = Math.max.apply(Math, numArr)
   
  return `${max} ${min}`;  
 }
 
-console.log(highAndLow("1 1 0"));
+// console.log(highAndLow("1 1 0"));
+
+//DISEMVOWEL TROLLS
+/*
+https://www.codewars.com/kata/52fba66badcd10859f00097e
+Trolls are attacking your comment section!
+A common way to deal with this situation is to remove all of the vowels from 
+the trolls' comments, neutralizing the threat.
+Your task is to write a function that takes a string and return a new string
+with all vowels removed.
+For example, the string "This website is for losers LOL!" would become 
+"Ths wbst s fr lsrs LL!".
+Note: for this kata y isn't considered a vowel.
+*/
+
+function disemvowel(str) {
+  let result = []
+  for (i=0; i<str.length; i++) {
+    if ((str[i] !== "a") && (str[i] !== "e") && (str[i] !== "i") && (str[i] !== "o") && (str[i] !== "u")){
+    result.push(str[i])
+    }
+ }
+  
+  return result.join("");
+}
+
+function disemvowel2(str) {
+let result = "";
+  [...str].forEach(el => {
+  switch (el.toLowerCase()) {
+    case "a":
+    case "e":
+    case "i":
+    case "o":
+    case "u":  
+      break;
+    default:
+      result += el;
+  }
+})
+return result;
+}
+
+// console.log(disemvowel2("This website is for losers LOL!"));
