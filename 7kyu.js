@@ -141,4 +141,32 @@ let result = "";
 return result;
 }
 
+function disemvowel3(str) {
+  return str.replace(/[aeiou]/ig,'');
+}
+
 // console.log(disemvowel2("This website is for losers LOL!"));
+
+
+//ISOGRAMS
+/*
+https://www.codewars.com/kata/54ba84be607a92aa900000f1/train/javascript
+
+An isogram is a word that has no repeating letters, consecutive or
+non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+*/
+
+function isIsogram(str){
+let strArr = [];
+let result = true;
+  [...str].forEach(letter => {
+  if(strArr.length === 0 || !strArr.includes(letter.toLowerCase())) {
+    strArr.push(letter.toLowerCase());
+  }
+   else if (strArr.includes(letter.toLowerCase())) result = false;
+  
+});
+return result
+}
+
+// console.log(isIsogram("Dermatoglyphics")); //true
