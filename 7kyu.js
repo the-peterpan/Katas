@@ -233,3 +233,41 @@ function filterHomogenous(arrays) {
 }
 
 // console.log(filterHomogenous([[1, 5, 4], ['a', 3, 5], ['b'], [], ['1', 2, 3]])); //[[1, 5, 4], ['b']]
+
+
+// Regex validate PIN code
+/*
+https://www.codewars.com/kata/55f8a9c06c018a0d6e000132
+
+ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+If the function is passed a valid PIN string, return true, else return false.
+
+Examples
+"1234"   -->  true
+"12345"  -->  false
+"a234"   -->  false
+*/
+
+function validatePIN (pin) {
+  let result = false;
+  if (pin.length === 4 || pin.length ===6) {
+    for (i=0; i<pin.length; i++) {
+      console.log(Number(pin[i]))
+      if (pin[i] === " ") return false;
+      if (Number(pin[i]) >= 0) {
+        result = true;
+        continue;
+      }
+
+      else {
+        result = false;
+        break;
+      }
+   
+      
+    }
+  }
+  return result;
+}
+
+// console.log(validatePIN("123=")); //false
