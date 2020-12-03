@@ -249,6 +249,17 @@ Examples
 */
 
 function validatePIN (pin) {
+if (pin.length === 4 || pin.length ===6) {
+  const regexpDigits = /\d/g;
+  const digitsInPin = pin.match(regexpDigits);
+  if (pin.length === digitsInPin.length) return true;
+  else return false;
+}
+else return false;
+}
+
+//solution without Regex
+function validatePIN2 (pin) {
   let result = false;
   if (pin.length === 4 || pin.length ===6) {
     for (i=0; i<pin.length; i++) {
@@ -270,4 +281,4 @@ function validatePIN (pin) {
   return result;
 }
 
-// console.log(validatePIN("123=")); //false
+console.log(validatePIN("123=")); //false
