@@ -281,4 +281,27 @@ function validatePIN2 (pin) {
   return result;
 }
 
-console.log(validatePIN("123=")); //false
+// console.log(validatePIN("123=")); //false
+
+//YOU'RE A SQUARE!
+/*
+https://www.codewars.com/kata/54c27a33fb7da0db0100040e
+Examples.
+-1  =>  false
+ 0  =>  true
+ 3  =>  false
+ 4  =>  true
+25  =>  true
+26  =>  false
+*/
+
+var isSquare = function(n){
+  if (n<0) return false;
+  let squareRoot = Math.sqrt(n);
+  return Number.isInteger(squareRoot);
+}
+
+console.log(isSquare(0)); //true
+console.log(isSquare(3)); //false
+console.log(isSquare(25)); //true
+console.log(isSquare(-1)); //false
