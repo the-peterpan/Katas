@@ -347,6 +347,63 @@ function calculateYears(principal, interest, tax, desired) {
   return years;
 }
 
-console.log(calculateYears(1000, .05, .18, 1100)); //3
-console.log(calculateYears(1000, 0.01625,0.18,1200)); //14
-console.log(calculateYears(1000, 0.05,0.18,1000)); //0
+// console.log(calculateYears(1000, .05, .18, 1100)); //3
+// console.log(calculateYears(1000, 0.01625,0.18,1200)); //14
+// console.log(calculateYears(1000, 0.05,0.18,1000)); //0
+
+//
+/*
+https://www.codewars.com/kata/577bd8d4ae2807c64b00045b/train/javascript
+
+Create a function that returns the name of the winner in a fight between two fighters.
+
+Each fighter takes turns attacking the other and whoever kills the other first is victorious. Death is defined as having health <= 0.
+
+Each fighter will be a Fighter object/instance. See the Fighter class below in your chosen language.
+
+Both health and damagePerAttack (damage_per_attack for python) will be integers larger than 0. You can mutate the Fighter objects.
+*/
+
+class Fighter {
+  constructor(name, health, damagePerAttack) {
+    this.name = name;
+    this.health = health;
+    this.damagePerAttack = damagePerAttack;
+  }
+
+  toString = function() { return this.name }
+}
+
+function declareWinner(fighter1, fighter2, firstAttacker) {
+  let secondAttacker;
+
+  if (firstAttacker === fighter1.toString()) {
+    firstAttacker = fighter1;
+    secondAttacker = fighter2;
+  } 
+  else if (firstAttacker === fighter2.toString()) {
+     firstAttacker = fighter2;
+    secondAttacker = fighter1;
+  }
+  console.log("first attacker", firstAttacker)
+  console.log("secondattacker", secondAttacker)
+
+  let numFirstAttackerAttacks = secondAttacker.health/firstAttacker.damagePerAttack;
+  let numSecondAttackerAttacks = firstAttacker.health/secondAttacker.damagePerAttack;
+
+  console.log(numFirstAttackerAttacks);
+  console.log(numSecondAttackerAttacks);
+
+  if (numFirstAttackerAttacks )
+  if ((Math.round(numFirstAttackerAttacks)-1) <= Math.round(numSecondAttackerAttacks)) {
+   return firstAttacker.toString();
+  }
+  else return secondAttacker.toString();
+
+}
+
+//  console.log(declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Lew")); //Lew
+// console.log(declareWinner(new Fighter("Harald", 20, 5), new Fighter("Harry", 5, 4), "Harry")); // Harald
+// console.log(declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Harry")); //Harry
+// console.log(declareWinner(new Fighter("David", 872, 56), new Fighter("Mark", 526, 91), "Mark")); //Mark
+console.log(declareWinner(new Fighter('Lui', 22, 42), new Fighter('Max', 20, 34), 'Max'));
