@@ -374,36 +374,65 @@ class Fighter {
   toString = function() { return this.name }
 }
 
+
 function declareWinner(fighter1, fighter2, firstAttacker) {
   let secondAttacker;
+  let winner;
 
   if (firstAttacker === fighter1.toString()) {
     firstAttacker = fighter1;
     secondAttacker = fighter2;
   } 
-  else if (firstAttacker === fighter2.toString()) {
-     firstAttacker = fighter2;
+  else {
+    firstAttacker = fighter2;
     secondAttacker = fighter1;
   }
-  console.log("first attacker", firstAttacker)
-  console.log("secondattacker", secondAttacker)
 
   let numFirstAttackerAttacks = secondAttacker.health/firstAttacker.damagePerAttack;
   let numSecondAttackerAttacks = firstAttacker.health/secondAttacker.damagePerAttack;
 
-  console.log(numFirstAttackerAttacks);
-  console.log(numSecondAttackerAttacks);
-
-  if (numFirstAttackerAttacks )
-  if ((Math.round(numFirstAttackerAttacks)-1) <= Math.round(numSecondAttackerAttacks)) {
-   return firstAttacker.toString();
+  if (Math.floor(numFirstAttackerAttacks) === Math.floor(numSecondAttackerAttacks)) {
+    if (numSecondAttackerAttacks % 1 === 0) winner = secondAttacker;
+    else winner = firstAttacker;
   }
-  else return secondAttacker.toString();
+    
+  else if (numFirstAttackerAttacks < numSecondAttackerAttacks) winner = firstAttacker;
+  else winner = secondAttacker;
 
+  return winner.name.toString();
+}
+
+
+// Refactored & other solutions:
+
+function declareWinner(fighter1, fighter2, firstAttacker) {
+  var fac1 = Math.ceil( fighter1.health / fighter2.damagePerAttack );
+  var fac2 = Math.ceil( fighter2.health / fighter1.damagePerAttack );
+  if(fac1 < fac2) {
+    return fighter2.name;
+  } else if(fac2 < fac1) {
+    return fighter1.name;
+  } else {
+    return firstAttacker;
+  }
+}
+
+function declareWinner(fighter1, fighter2, firstAttacker) {
+  while (fighter1.health > 0 && fighter2.health > 0) {
+    fighter2.health -= fighter1.damagePerAttack;
+    fighter1.health -= fighter2.damagePerAttack;
+  }
+  
+  if (fighter1.health <= 0 && fighter2.health <= 0)
+    return firstAttacker;
+  else if (fighter1.health <= 0)
+    return fighter2.name;
+  else
+    return fighter1.name;
 }
 
 //  console.log(declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Lew")); //Lew
 // console.log(declareWinner(new Fighter("Harald", 20, 5), new Fighter("Harry", 5, 4), "Harry")); // Harald
 // console.log(declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Harry")); //Harry
 // console.log(declareWinner(new Fighter("David", 872, 56), new Fighter("Mark", 526, 91), "Mark")); //Mark
-console.log(declareWinner(new Fighter('Lui', 22, 42), new Fighter('Max', 20, 34), 'Max'));
+// console.log(declareWinner(new Fighter('Lui', 22, 42), new Fighter('Max', 20, 34), 'Max'));
