@@ -436,3 +436,12 @@ function declareWinner(fighter1, fighter2, firstAttacker) {
 // console.log(declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Harry")); //Harry
 // console.log(declareWinner(new Fighter("David", 872, 56), new Fighter("Mark", 526, 91), "Mark")); //Mark
 // console.log(declareWinner(new Fighter('Lui', 22, 42), new Fighter('Max', 20, 34), 'Max'));
+
+
+//COUNT THE DIGIT
+/*
+https://www.codewars.com/kata/566fc12495810954b1000030/train/javascript
+
+Take an integer n (n >= 0) and a digit d (0 <= d <= 9) as an integer. Square all numbers k (0 <= k <= n) between 0 and n. Count the numbers of digits d used in the writing of all the k**2. Call nb_dig (or nbDig or ...) the function taking n and d as parameters and returning this count.
+*/
+
