@@ -904,3 +904,39 @@ return a.reduce((sum, presentValue) => sum + presentValue ** 2, 0) > b.reduce((s
 }
 
 // console.log(arrayMadness2([4,5,6], [1, 2, 3]));
+
+// WHAT'S THE REAL FLOOR
+/*
+https://www.codewars.com/kata/574b3b1599d8f897470018f6
+Americans are odd people: in their buildings, the first floor is actually the ground floor and there is no 13th floor (due to superstition).
+
+Write a function that given a floor in the american system returns the floor in the european system.
+
+With the 1st floor being replaced by the ground floor and the 13th floor being removed, the numbers move down to take their place. In case of above 13, they move down by two because there are two omitted numbers below them.
+
+Basements (negatives) stay the same as the universal level.
+
+More information here
+
+Examples
+1  =>  0 
+0  =>  0
+5  =>  4
+15  =>  13
+-3  =>  -3
+*/
+
+//KISS sol'n:
+function getRealFloor(n) {
+if (n<=0) return n;
+else if (n===13) return 'There is no 13th floor';
+else if (n>0 && n<13) return n-1;
+else if (n>13) return n-2;
+else return 'Please enter a floor number'
+}
+
+//Refactored sol'n:
+const getRealFloor2 = (n) => (n<=0) ? n : (n<13) ? n-1 : n-2; 
+
+console.log(getRealFloor2(1)); //0
+console.log(getRealFloor2(5)) ;//4
